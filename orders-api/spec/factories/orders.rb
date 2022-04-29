@@ -4,5 +4,6 @@ FactoryBot.define do
     requester { nil }
     assignee { nil }
     photos { nil }
+    status { "MyString" }
   end
 end
