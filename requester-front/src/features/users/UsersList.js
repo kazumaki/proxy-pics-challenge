@@ -1,8 +1,4 @@
-import { useDispatch } from "react-redux";
-
 const UsersList = ({users, currentSelected, handleOnChangeUser}) => {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <select onChange={(e) => handleOnChangeUser(e.target.value)} value={currentSelected}>

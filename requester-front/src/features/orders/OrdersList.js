@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const OrdersList = ({orders}) => {
-  console.log(orders)
   return (
     <div>
       <h1>Orders</h1>
