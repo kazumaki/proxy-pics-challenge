@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -11,9 +11,21 @@ import { fetchUsers } from './features/users/usersAPI';
 import Orders from './features/orders/Orders';
 import AuthenticateRoute from './features/authentication/AuthenticateRoute';
 import Login from './features/authentication/Login';
+import { fetchOrders } from './features/orders/ordersAPI';
 
 function App() {
   const { authentication, users, orders } = useSelector(state => state);
+  const dispatch =  useDispatch();
+
+  useEffect(() => {
+    if(authentication.currentUserId) {
+      dispatch(fetchOrders());
+    }
+  }, [dispatch, authentication.currentUserId])
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch])
 
   return (
     <div>

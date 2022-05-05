@@ -5,7 +5,7 @@ const CreateOrderForm = ({ users, currentUserId }) => {
   const dispatch = useDispatch();
 
   const onSubmitForm = (e) => {
-    console.log('memer')
+
     e.preventDefault();
     const order = {
       assignee_id: e.target.userId.value,

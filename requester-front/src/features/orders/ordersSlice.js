@@ -14,8 +14,8 @@ export const ordersSlice = createSlice({
     },
 
     fetchOrdersSuccess: (state, action) => {
-      state.requesterOrders = action.payload.requesterOrders;
-      state.assigneeOrders = action.payload.assigneeOrders;
+      state.requesterOrders = action.payload.requester_orders;
+      state.assigneeOrders = action.payload.assignee_orders;
       state.loading = false;
     },
 
@@ -29,7 +29,7 @@ export const ordersSlice = createSlice({
     },
 
     createOrderSuccess: (state, action) => {
-      state.orders.push(action.payload);
+      state.requesterOrders.push(action.payload);
       state.loading = false;
     },
 
