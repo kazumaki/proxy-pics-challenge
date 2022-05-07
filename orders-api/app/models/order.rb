@@ -9,6 +9,6 @@ class Order < ApplicationRecord
   validates :status, presence: true
 
   def photos_url
-    photos.map { |photo| Rails.application.routes.url_helpers.rails_blob_path(photo, only_path: true) }
+    photos.map { |photo| photo.url }
   end
 end

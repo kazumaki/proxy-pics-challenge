@@ -31,13 +31,13 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def update
-    order = @current_user.orders.find_by(id: update_params[:id])
+    order = @current_user.orders.find_by(id: update_params[:order_id])
     return render json: { error: 'Order not found' }, status: :not_found unless order
     return render json: { error: 'Photos need to be present' }, status: :bad_request unless update_params[:photos]
     order.photos.attach(update_params[:photos])
     return render json: { error: 'Unable to save photos'}, status: :bad_request unless order.photos.attached?
     order.update(status: 'Completed')
-    render json: order, status: :ok
+    render json: order, methods: [:photos_url], status: :ok
   end
 
   private
@@ -50,7 +50,7 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def update_params
-    params.require(:order).permit(:id, :photos => [])
+    params.require(:order).permit(:order_id, :photos => [])
   end
 
   def authenticate_user
