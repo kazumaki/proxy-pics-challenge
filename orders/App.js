@@ -52,7 +52,7 @@ const App = () => {
         />
         <Route path="/login" element={<Login users={users.users} currentUserId={authentication.currentUserId} />} />
         <Route path="/orders/:orderId/send-photo" element={
-          <AuthenticateRoute currentUserId={authentication.currentUserId} component={<SendPhoto />} />
+          <AuthenticateRoute currentUserId={authentication.currentUserId} component={<SendPhoto loading={orders.loading} />} />
         } />
       </Routes>
     </View>
