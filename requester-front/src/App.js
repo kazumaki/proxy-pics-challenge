@@ -10,10 +10,13 @@ import { fetchUsers } from './features/users/usersAPI';
 import Orders from './features/orders/Orders';
 import AuthenticateRoute from './features/authentication/AuthenticateRoute';
 import Login from './features/authentication/Login';
-import { fetchOrders } from './features/orders/ordersAPI';
+import { fetchOrders, getOrders } from './features/orders/ordersAPI';
+import Order from './features/orders/Order';
 
 function App() {
   const { authentication, users, orders } = useSelector(state => state);
+  const ordersList = useSelector(state => getOrders(state));
+
   const dispatch =  useDispatch();
 
   useEffect(() => {
@@ -35,8 +38,13 @@ function App() {
             <AuthenticateRoute component={
               <Orders 
                 users={users.users}
-                orders={orders.requesterOrders}
+                orders={ordersList}
                 currentUserId ={authentication.currentUserId} />
+            } />
+          } />
+          <Route path="/orders/:orderId" element={
+            <AuthenticateRoute component={
+              <Order loading={orders.loading} />
             } />
           } />
           <Route path="/login" element={<Login users={users.users} />} />
