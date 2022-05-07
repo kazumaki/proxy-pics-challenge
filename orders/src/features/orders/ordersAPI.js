@@ -1,6 +1,6 @@
 import {API_URL} from "@env"
 import axios from "axios"
-import { fetchOrdersFailure, fetchOrdersStart, fetchOrdersSuccess, updateOrderFailure, updateOrderStart, updateOrderSuccess } from "./ordersSlice";
+import { fetchOrderFailure, fetchOrdersFailure, fetchOrdersStart, fetchOrdersSuccess, fetchOrderStart, fetchOrderSuccess, updateOrderFailure, updateOrderStart, updateOrderSuccess } from "./ordersSlice";
 
 export const ordersAPI = axios.create({
   baseURL: `${API_URL}/api/v1/orders`,
@@ -28,6 +28,22 @@ export const updateOrder = ({orderId, formData}) => {
       dispatch(updateOrderFailure(error));
     }
   }
+}
+
+export const fetchOrder = (orderId) => {
+  return async (dispatch, getState) => {
+    dispatch(fetchOrderStart());
+    try {
+      const response = await ordersAPI.get(`/${orderId}`, getHeaders(getState()));
+      dispatch(fetchOrderSuccess(response.data));
+    } catch (error) {
+      dispatch(fetchOrderFailure(error));
+    }
+  }
+}
+
+export const getOrder = (state, orderId) => {
+  return state.orders.orders[orderId];
 }
 
 const getHeaders = (state, formData) => {

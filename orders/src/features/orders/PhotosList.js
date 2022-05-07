@@ -10,7 +10,7 @@ const PhotosList = ({ photos }) => {
         style={{ padding: 10 }}
         numColumns={2}
         data={photos}
-        renderItem={({ item }) => <Image source={item} style={{ width: '50%', height: 200, margin: 2 }} />}
+        renderItem={({ item }) => <Image style={{ width: '50%', height: 200, margin: 2 }} source={{ uri: item }} />}
       />
     </View>
   );

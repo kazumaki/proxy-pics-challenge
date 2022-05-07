@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { Navigate, useNavigate } from 'react-router-native';
+import { Link, useNavigate } from 'react-router-native';
 
 
 const OrderItem = ({ order }) => {
@@ -12,7 +12,9 @@ const OrderItem = ({ order }) => {
 
   return (
     <View>
-      <Text>{order.id}</Text>
+      <Link to={`/orders/${order.id}`}>
+        <Text>{order.id}</Text>
+      </Link>
       <Text>{order.address}</Text>
       {order.status == 'Pending' && <Button title="Send Photos" onPress={() => onPressSendPhotos(order.id)} />}
     </View>

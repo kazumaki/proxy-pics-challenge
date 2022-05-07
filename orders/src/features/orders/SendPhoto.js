@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, View } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-native';
+import { useNavigate, useParams } from 'react-router-native';
 import { updateOrder } from './ordersAPI';
 import PhotosList from './PhotosList';
 
@@ -10,6 +10,7 @@ const SendPhoto = ({loading}) => {
   const [images, setImages] = React.useState([]);
   const { orderId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onPressAddPhoto = async () => {
     const options = {
@@ -35,6 +36,7 @@ const SendPhoto = ({loading}) => {
     }
     formData.append('order[order_id]', orderId);
     dispatch(updateOrder({orderId, formData}));
+    navigate(-1);
   }
 
   return (
@@ -42,7 +44,7 @@ const SendPhoto = ({loading}) => {
       {loading && <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)'}} />}
       <Button title="Add Photo" onPress={onPressAddPhoto} />
       <Button title="Send Photos" onPress={onPressSendPhotos} />
-      <PhotosList photos={images} />
+      <PhotosList photos={images.map(item => item.uri)} />
     </View>
   );
 }

@@ -21,6 +21,18 @@ export const ordersSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    fetchOrderStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchOrderSuccess: (state, action) => {
+      state.orders[action.payload.id] = action.payload;
+      state.loading = false;
+    },
+    fetchOrderFailure: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
     updateOrderStart: (state) => {
       state.loading = true;
       state.error = null;
@@ -40,6 +52,9 @@ export const {
   fetchOrdersStart,
   fetchOrdersSuccess,
   fetchOrdersFailure,
+  fetchOrderStart,
+  fetchOrderSuccess,
+  fetchOrderFailure,
   updateOrderStart,
   updateOrderSuccess,
   updateOrderFailure,

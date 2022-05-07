@@ -17,6 +17,7 @@ import Orders from './src/features/orders/Orders';
 import _ from 'lodash';
 import { fetchOrders } from './src/features/orders/ordersAPI';
 import SendPhoto from './src/features/orders/SendPhoto';
+import OrderDetails from './src/features/orders/OrderDetails';
 
 const App = () => {
   const {users, authentication, orders} = useSelector(state => state);
@@ -47,13 +48,24 @@ const App = () => {
       <Routes>
         <Route path="/" 
           element={
-            <AuthenticateRoute currentUserId={authentication.currentUserId} component={<Orders orders={_.values(orders.orders)} />} />
+            <AuthenticateRoute 
+              currentUserId={authentication.currentUserId} 
+              component={<Orders orders={_.values(orders.orders)} 
+              loading={orders.loading} />} 
+            />
           }
         />
         <Route path="/login" element={<Login users={users.users} currentUserId={authentication.currentUserId} />} />
-        <Route path="/orders/:orderId/send-photo" element={
-          <AuthenticateRoute currentUserId={authentication.currentUserId} component={<SendPhoto loading={orders.loading} />} />
-        } />
+        <Route path="orders">
+          <Route path=":orderId">
+            <Route path="" element={
+              <AuthenticateRoute currentUserId={authentication.currentUserId} component={<OrderDetails />} />
+            } />
+            <Route path="send-photo" element={
+              <AuthenticateRoute currentUserId={authentication.currentUserId} component={<SendPhoto loading={orders.loading} />} />
+            } />
+          </Route>
+        </Route>
       </Routes>
     </View>
   );
