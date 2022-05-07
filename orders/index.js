@@ -8,11 +8,14 @@ import {name as appName} from './app.json';
 import { store } from './src/app/store';
 import { Provider } from 'react-redux';
 import React from 'react';
+import { NativeRouter } from 'react-router-native';
 
 const Root = () => {
   return (
     <Provider store={store}>
-      <App />
+      <NativeRouter>
+        <App />
+      </NativeRouter>
     </Provider>
   );
 }
