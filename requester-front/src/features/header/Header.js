@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setCurrentUserId } from "../authentication/authenticationSlice";
+import style from "./header.module.css";
 
 const Header = ({currentUserId}) => {
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const Header = ({currentUserId}) => {
   }
 
   return (
-    <header>
+    <header className={style.header}>
       <div>
         {currentUserId && <button onClick={handleLogout}>Logout</button>}
       </div> 

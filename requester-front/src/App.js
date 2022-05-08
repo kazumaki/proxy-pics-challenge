@@ -12,10 +12,11 @@ import AuthenticateRoute from './features/authentication/AuthenticateRoute';
 import Login from './features/authentication/Login';
 import { fetchOrders, getOrders } from './features/orders/ordersAPI';
 import Order from './features/orders/Order';
+import style from './app.module.css';
 
 function App() {
   const { authentication, users, orders } = useSelector(state => state);
-  const ordersList = useSelector(state => getOrders(state));
+  const ordersList = useSelector(state => getOrders(state, orders.orderBy, orders.orderOrder));
 
   const dispatch =  useDispatch();
 
@@ -30,26 +31,30 @@ function App() {
   }, [dispatch])
 
   return (
-    <div>
+    <div className={style.mainContainer}>
       <Header currentUserId={authentication.currentUserId}/>
-      <Router>
-        <Routes>
-          <Route path="/" element={
-            <AuthenticateRoute component={
-              <Orders 
-                users={users.users}
-                orders={ordersList}
-                currentUserId ={authentication.currentUserId} />
+      <div className={style.contentContainer}>
+        <Router>
+          <Routes>
+            <Route path="/" element={
+              <AuthenticateRoute component={
+                <Orders 
+                  users={users.users}
+                  orders={ordersList}
+                  orderBy={orders.orderBy}
+                  orderOrder={orders.orderOrder}
+                  currentUserId ={authentication.currentUserId} />
+              } />
             } />
-          } />
-          <Route path="/orders/:orderId" element={
-            <AuthenticateRoute component={
-              <Order loading={orders.loading} />
+            <Route path="/orders/:orderId" element={
+              <AuthenticateRoute component={
+                <Order loading={orders.loading} />
+              } />
             } />
-          } />
-          <Route path="/login" element={<Login users={users.users} />} />
-        </Routes>
-      </Router>
+            <Route path="/login" element={<Login users={users.users} />} />
+          </Routes>
+        </Router>
+      </div>
     </div>
   );
 }

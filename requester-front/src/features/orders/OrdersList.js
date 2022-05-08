@@ -1,15 +1,13 @@
-import { Link } from 'react-router-dom';
+import style from "./orderslist.module.css";
+import OrderItem from './OrderItem';
 
 const OrdersList = ({orders}) => {
   return (
     <div>
-      <h1>Orders</h1>
-      <ul>
+      <ul className={style.ordersList}>
         {orders.map(order => (
-          <li key={order.id}>
-            <Link to={`/orders/${order.id}`}>
-              {order.id}
-            </Link>
+          <li key={order.id} className={style.orderListItem}>
+            <OrderItem order={order} />
           </li>
         ))}
       </ul>
