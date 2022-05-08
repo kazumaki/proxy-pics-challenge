@@ -19,7 +19,7 @@ const OrderDetails = ({loading}) => {
   }
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Text>{order.id}</Text>
       <Text>{order.address}</Text>
       <Text>{order.status}</Text>

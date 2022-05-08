@@ -50,7 +50,6 @@ const SendPhoto = ({loading}) => {
 }
 
 const styles = StyleSheet.create({
-  // I want a container that will be a flex container and will have a small space between the items
   container: {
     flex: 1,
     flexDirection: 'column',
