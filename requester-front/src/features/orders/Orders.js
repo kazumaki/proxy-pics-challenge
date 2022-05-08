@@ -3,7 +3,6 @@ import OrdersList from "./OrdersList";
 import OrdersSortBy from "./OrdersSortBy";
 
 const Orders = ({ users, orders, currentUser, orderBy, orderOrder }) => {
-  console.log(currentUser)
   return (
     <div>
       <h1>{`Welcome ${currentUser.name} to your orders page`}</h1>
