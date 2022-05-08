@@ -77,7 +77,7 @@ RSpec.describe "Api::V1::Orders", type: :request do
   describe "orders#update" do
     it "returns http ok" do
       # when user_one updates order
-      patch "/api/v1/orders/#{order_list.first.id}", params: { order: { id: user_one.orders.first.id, photos: [image_file]} }, headers: { 'Authorization' => 'Bearer ' + user_one.id.to_s }
+      patch "/api/v1/orders/#{order_list.first.id}", params: { order: { order_id: user_one.orders.first.id, photos: [image_file]} }, headers: { 'Authorization' => 'Bearer ' + user_one.id.to_s }
       expect(response).to have_http_status(:ok)
     end
   end
