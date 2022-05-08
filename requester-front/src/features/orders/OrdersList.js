@@ -1,15 +1,18 @@
 import style from "./orderslist.module.css";
 import OrderItem from './OrderItem';
 
-const OrdersList = ({orders}) => {
+const OrdersList = ({orders, users}) => {
   return (
     <div>
       <ul className={style.ordersList}>
-        {orders.map(order => (
-          <li key={order.id} className={style.orderListItem}>
-            <OrderItem order={order} />
-          </li>
-        ))}
+        {orders.map(order => {
+          const assignee = users.find(user => user.id === order.assignee_id)
+          return (
+            <li key={order.id} className={style.orderListItem}>
+              <OrderItem order={order} assignee={assignee} />
+            </li>
+          )
+        })}
       </ul>
     </div>
   );

@@ -8,7 +8,7 @@ const Orders = ({ users, orders, currentUser, orderBy, orderOrder }) => {
       <h1>{`Welcome ${currentUser.name} to your orders page`}</h1>
       <CreateOrderForm users={users} currentUserId={currentUser.id} />
       <OrdersSortBy orderBy={orderBy} orderOrder={orderOrder} />
-      <OrdersList orders={orders} />
+      <OrdersList orders={orders} users={users} />
     </div>
   );
 }

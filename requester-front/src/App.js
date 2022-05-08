@@ -50,7 +50,7 @@ function App() {
             } />
             <Route path="/orders/:orderId" element={
               <AuthenticateRoute component={
-                <Order loading={orders.loading} />
+                <Order loading={orders.loading} users={users.users} />
               } />
             } />
             <Route path="/login" element={<Login users={users.users} />} />
