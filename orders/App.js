@@ -52,7 +52,7 @@ const App = () => {
           element={
             <AuthenticateRoute 
               currentUserId={authentication.currentUserId} 
-              component={<Orders orders={ordersList} loading={orders.loading} />} 
+              component={<Orders orders={ordersList} loading={orders.loading} orderBy={orders.orderBy} orderOrder={orders.orderOrder} />} 
             />
           }
         />
