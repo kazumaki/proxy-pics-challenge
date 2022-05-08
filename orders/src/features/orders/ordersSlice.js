@@ -6,6 +6,8 @@ export const ordersSlice = createSlice({
   initialState: {
     orders: {},
     loading: false,
+    orderBy: 'created_at',
+    orderOrder: 'desc',
     error: null,
   },
   reducers: {
@@ -33,6 +35,12 @@ export const ordersSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    setOrderBy: (state, action) => {
+      state.orderBy = action.payload;
+    },
+    setOrderOrder: (state, action) => {
+      state.orderOrder = action.payload;
+    },
     updateOrderStart: (state) => {
       state.loading = true;
       state.error = null;
@@ -55,6 +63,8 @@ export const {
   fetchOrderStart,
   fetchOrderSuccess,
   fetchOrderFailure,
+  setOrderBy,
+  setOrderOrder,
   updateOrderStart,
   updateOrderSuccess,
   updateOrderFailure,

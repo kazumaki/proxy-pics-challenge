@@ -1,10 +1,12 @@
 import React from 'react';
 import OrdersList from "./OrdersList"
 import { View } from "react-native"
+import OrdersSortBy from './OrdersSortBy';
 
-const Orders = ({ orders }) => {
+const Orders = ({ orders, orderBy, orderOrder }) => {
   return (
-    <View>
+    <View style={{flex: 1}}>
+      <OrdersSortBy orderBy={orderBy} orderOrder={orderOrder} />
       <OrdersList orders={orders} />
     </View>
   )

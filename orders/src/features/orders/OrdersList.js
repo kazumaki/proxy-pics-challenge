@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import OrderItem from './OrderItem';
 
 const OrdersList = ({ orders, loading }) => {
@@ -8,9 +8,10 @@ const OrdersList = ({ orders, loading }) => {
   }
   
   return (
-    <View>
+    <View style={{flex: 1}}>
       <FlatList
         data={orders}
+        extraData={orders}
         renderItem={({ item }) => <OrderItem order={item} />}
         keyExtractor={item => item.id}
       />

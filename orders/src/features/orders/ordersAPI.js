@@ -1,5 +1,6 @@
 import {API_URL} from "@env"
 import axios from "axios"
+import _ from "lodash";
 import { fetchOrderFailure, fetchOrdersFailure, fetchOrdersStart, fetchOrdersSuccess, fetchOrderStart, fetchOrderSuccess, updateOrderFailure, updateOrderStart, updateOrderSuccess } from "./ordersSlice";
 
 export const ordersAPI = axios.create({
@@ -40,6 +41,10 @@ export const fetchOrder = (orderId) => {
       dispatch(fetchOrderFailure(error));
     }
   }
+}
+
+export const getOrders = (state, orderBy = 'created_at', orderOrder = 'desc') => {
+  return _.orderBy(state.orders.orders, [orderBy], [orderOrder]);
 }
 
 export const getOrder = (state, orderId) => {

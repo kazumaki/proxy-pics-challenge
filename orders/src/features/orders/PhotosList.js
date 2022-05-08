@@ -4,7 +4,7 @@ import { FlatList, Image, View } from 'react-native';
 
 const PhotosList = ({ photos }) => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <FlatList
         // I want a padding of 10px on the top and bottom between items inside the list
         style={{ padding: 10 }}

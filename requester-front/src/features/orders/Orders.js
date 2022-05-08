@@ -2,11 +2,12 @@ import CreateOrderForm from "./CreateOrderForm";
 import OrdersList from "./OrdersList";
 import OrdersSortBy from "./OrdersSortBy";
 
-const Orders = ({ users, orders, currentUserId, orderBy, orderOrder }) => {
+const Orders = ({ users, orders, currentUser, orderBy, orderOrder }) => {
+  console.log(currentUser)
   return (
     <div>
-      <h1>Orders</h1>
-      <CreateOrderForm users={users} currentUserId={currentUserId} />
+      <h1>{`Welcome ${currentUser.name} to your orders page`}</h1>
+      <CreateOrderForm users={users} currentUserId={currentUser.id} />
       <OrdersSortBy orderBy={orderBy} orderOrder={orderOrder} />
       <OrdersList orders={orders} />
     </div>

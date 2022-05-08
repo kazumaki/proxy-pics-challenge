@@ -13,6 +13,7 @@ import Login from './features/authentication/Login';
 import { fetchOrders, getOrders } from './features/orders/ordersAPI';
 import Order from './features/orders/Order';
 import style from './app.module.css';
+import Signup from './features/authentication/Signup';
 
 function App() {
   const { authentication, users, orders } = useSelector(state => state);
@@ -38,12 +39,13 @@ function App() {
           <Routes>
             <Route path="/" element={
               <AuthenticateRoute component={
-                <Orders 
+                <Orders
+                  currentUser={users.users.find(user => user.id === Number(authentication.currentUserId))}
                   users={users.users}
                   orders={ordersList}
                   orderBy={orders.orderBy}
                   orderOrder={orders.orderOrder}
-                  currentUserId ={authentication.currentUserId} />
+                />
               } />
             } />
             <Route path="/orders/:orderId" element={
@@ -52,6 +54,7 @@ function App() {
               } />
             } />
             <Route path="/login" element={<Login users={users.users} />} />
+            <Route path="/signup" element={<Signup loading={users.loading} />} />
           </Routes>
         </Router>
       </div>

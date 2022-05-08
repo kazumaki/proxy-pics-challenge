@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-native';
@@ -40,7 +40,7 @@ const SendPhoto = ({loading}) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       {loading && <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)'}} />}
       <Button title="Add Photo" onPress={onPressAddPhoto} />
       <Button title="Send Photos" onPress={onPressSendPhotos} />
@@ -48,5 +48,17 @@ const SendPhoto = ({loading}) => {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  // I want a container that will be a flex container and will have a small space between the items
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    margin: 10,
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
+  }
+});
 
 export default SendPhoto;

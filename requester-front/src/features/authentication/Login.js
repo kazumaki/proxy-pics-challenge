@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUserId } from "./authenticationSlice";
 import UsersList from "../users/UsersList";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import style from "./login.module.css";
 
 const Login = ({users}) => {
@@ -25,6 +25,7 @@ const Login = ({users}) => {
       <h2>Login</h2>
       <UsersList users={users} handleOnChangeUser={setCurrentUser} currentSelected={currentUser} />
       <button onClick={onLogin}>Login</button>
+      <Link to="/signup">Signup</Link>
     </div>
   )
 }
