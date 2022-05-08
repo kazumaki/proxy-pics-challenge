@@ -38,8 +38,8 @@ export const fetchOrder = (orderId) => {
   }
 }
 
-export const getOrders = (state) => {
-  return _.values(state.orders.orders);
+export const getOrders = (state, sortBy = "created_at", sortOrder = "desc") => {
+  return _.orderBy(state.orders.orders, [sortBy], [sortOrder]);
 }
 
 export const getOrder = (state, orderId) => {
